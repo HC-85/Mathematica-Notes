@@ -1,0 +1,688 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     24250,        680]
+NotebookOptionsPosition[     22505,        639]
+NotebookOutlinePosition[     22853,        654]
+CellTagsIndexPosition[     22810,        651]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Circuit Analysis", "Title",
+ CellChangeTimes->{{3.8217964882608314`*^9, 
+  3.8217964918009505`*^9}},ExpressionUUID->"5168e58f-2026-40a9-862b-\
+ad6e986db050"],
+
+Cell[CellGroupData[{
+
+Cell["Angle addition formulas", "Section",
+ CellChangeTimes->{{3.821834806783367*^9, 
+  3.821834834500515*^9}},ExpressionUUID->"bd12b6eb-312e-4753-a4a9-\
+3bc9448368b2"],
+
+Cell[TextData[{
+ StyleBox["cos(\[Alpha] + \[Beta])",
+  FontColor->RGBColor[1, 0.5, 0.5]],
+ StyleBox[" + \[ImaginaryI] ",
+  FontColor->GrayLevel[1]],
+ StyleBox["sin(\[Alpha] + \[Beta])",
+  FontColor->RGBColor[1, 0, 1]],
+ StyleBox[" = ",
+  FontColor->GrayLevel[1]],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[ExponentialE]", 
+    RowBox[{"\[ImaginaryI]", "(", 
+     RowBox[{"\[Alpha]", " ", "+", " ", "\[Beta]"}], ")"}]], TraditionalForm]],
+  FormatType->"TraditionalForm",
+  FontColor->GrayLevel[1],ExpressionUUID->
+  "d1247358-0936-4420-a145-53647739af7b"],
+ StyleBox[" = ",
+  FontColor->GrayLevel[1]],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"\[ImaginaryI]\[Alpha]", " "}]], 
+    SuperscriptBox["\[ExponentialE]", "\[ImaginaryI]\[Beta]"]}], 
+   TraditionalForm]],
+  FontColor->GrayLevel[1],ExpressionUUID->
+  "63799763-c3a9-4aee-a043-b2084731def1"],
+ StyleBox[" = [cos(\[Alpha]) + \[ImaginaryI] sin(\[Alpha])][cos(\[Beta]) + \
+\[ImaginaryI] sin(\[Beta])] = [",
+  FontColor->GrayLevel[1]],
+ StyleBox["cos(\[Alpha])cos(\[Beta]) \[Dash] sin(\[Alpha])sin(\[Beta])",
+  FontColor->RGBColor[1, 0.5, 0.5]],
+ StyleBox["] + \[ImaginaryI][",
+  FontColor->GrayLevel[1]],
+ StyleBox["sin(\[Alpha])cos(\[Beta]) + cos(\[Alpha])sin(\[Beta])",
+  FontColor->RGBColor[1, 0, 1]],
+ StyleBox["]",
+  FontColor->GrayLevel[1]]
+}], "Subsubsection",
+ CellChangeTimes->{{3.8218348398176975`*^9, 3.821835209699895*^9}, {
+  3.821835323454132*^9, 
+  3.821835324163518*^9}},ExpressionUUID->"f45a6eac-1e13-4cc6-ba23-\
+60bd77a2e65b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Sinusoidal Response", "Section",
+ CellChangeTimes->{{3.8219063032487483`*^9, 
+  3.8219063226918035`*^9}},ExpressionUUID->"fb3afe90-e127-4f2b-a136-\
+ac2075215d5c"],
+
+Cell["\<\
+Complete Response = Natural/Transient Response + Forced Response\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.8219063271645265`*^9, 3.8219063276352186`*^9}, {
+  3.821906390525811*^9, 
+  3.8219064363365374`*^9}},ExpressionUUID->"5eb0de02-0a4f-41b0-ac21-\
+38d395e7f7eb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Steady-State Response for an RL Circuit", "Section",
+ CellChangeTimes->{{3.821906453830592*^9, 3.821906459067606*^9}, {
+  3.821906527733961*^9, 3.821906533550036*^9}, {3.8219065891438847`*^9, 
+  3.8219065922314315`*^9}},ExpressionUUID->"26c37721-86de-4e12-a64a-\
+ccbb8c2599c5"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Through KVL we find: \n",
+  FontColor->GrayLevel[1]],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["V", "m"], 
+     RowBox[{"cos", "(", 
+      RowBox[{"\[Omega]", " ", "t"}], ")"}]}], " ", "=", " ", 
+    RowBox[{
+     RowBox[{"L", 
+      StyleBox[
+       FractionBox[
+        RowBox[{"d", " ", "i"}], 
+        RowBox[{"d", " ", "t"}]],
+       FontSize->24]}], "+", " ", 
+     RowBox[{"R", " ", "i"}]}]}], TraditionalForm]],
+  FontColor->GrayLevel[1],ExpressionUUID->
+  "1c1b7aa9-f058-4b84-b00f-acefa952e504"],
+ StyleBox["\nSubstituting ",
+  FontColor->GrayLevel[1]],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"i", "(", "t", ")"}], "=", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["I", "1"], "cos", " ", 
+      RowBox[{"(", 
+       RowBox[{"\[Omega]", " ", "t"}], ")"}]}], "+", 
+     RowBox[{
+      SubscriptBox["I", "2"], "sin", " ", 
+      RowBox[{"(", 
+       RowBox[{"\[Omega]", " ", "t"}], ")"}]}]}]}], TraditionalForm]],
+  InitializationCell->True,
+  FontColor->GrayLevel[1],ExpressionUUID->
+  "c4e78e39-b3f0-4821-aaeb-325cebe99aaa"],
+ StyleBox[" and solving the system, we obtain:\n",
+  FontColor->GrayLevel[1]],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"i", "(", "t", ")"}], "=", 
+    RowBox[{
+     RowBox[{
+      StyleBox[
+       FractionBox[
+        RowBox[{"R", " ", 
+         SubscriptBox["V", "m"]}], 
+        RowBox[{
+         SuperscriptBox["R", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[Omega]", "2"], 
+          SuperscriptBox["L", "2"]}]}]],
+       FontSize->24], "cos", " ", 
+      RowBox[{"(", 
+       RowBox[{"\[Omega]", " ", "t"}], ")"}]}], "+", 
+     RowBox[{
+      StyleBox[
+       FractionBox[
+        RowBox[{"\[Omega]", " ", "L", " ", 
+         SubscriptBox["V", "m"]}], 
+        RowBox[{
+         SuperscriptBox["R", "2"], "+", 
+         RowBox[{
+          SuperscriptBox["\[Omega]", "2"], 
+          SuperscriptBox["L", "2"]}]}]],
+       FontSize->24], "sin", " ", 
+      RowBox[{"(", 
+       RowBox[{"\[Omega]", " ", "t"}], ")"}]}]}]}], TraditionalForm]],
+  FontColor->GrayLevel[1],ExpressionUUID->
+  "2c2f7a0d-3a58-45ce-9b31-cba2e0afceb1"],
+ StyleBox["\nIf we then choose to express it in terms of a phased cosine:\n",
+  FontColor->GrayLevel[1]],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"i", "(", "t", ")"}], "=", 
+    RowBox[{"A", " ", 
+     RowBox[{"cos", "(", 
+      RowBox[{
+       RowBox[{"\[Omega]", " ", "t"}], "-", "\[Theta]"}], ")"}]}]}], 
+   TraditionalForm]],
+  FontColor->GrayLevel[1],ExpressionUUID->
+  "5f383d7b-867f-48bc-ab10-d27e72c86f76"],
+ StyleBox["\nWe end up with:\n",
+  FontColor->GrayLevel[1]],
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{
+     RowBox[{"i", "(", "t", ")"}], "=", 
+     RowBox[{
+      StyleBox[
+       FractionBox[
+        SubscriptBox["V", "m"], 
+        SqrtBox[
+         RowBox[{
+          SuperscriptBox["R", "2"], "+", " ", 
+          RowBox[{
+           SuperscriptBox["\[Omega]", "2"], 
+           SuperscriptBox["L", "2"]}]}]]],
+       FontSize->24], 
+      RowBox[{"cos", "(", 
+       RowBox[{
+        RowBox[{"\[Omega]", " ", "t"}], " ", "-", 
+        RowBox[{"arctan", "(", 
+         StyleBox[
+          FractionBox["\[Omega]L", "R"],
+          FontSize->24], ")"}]}], ")"}]}]}],
+    FontColor->RGBColor[1, 0.5, 0]], TraditionalForm]],
+  FontColor->RGBColor[0.6, 0.4, 0.2],ExpressionUUID->
+  "ecc81f84-55ef-49bb-873a-0833aeee99de"]
+}], "Subsubsection",
+ CellChangeTimes->{{3.821906539138135*^9, 3.821906539917967*^9}, {
+  3.8219066118356113`*^9, 3.8219066292695503`*^9}, {3.8219066613422756`*^9, 
+  3.8219066758201256`*^9}, {3.821910237472938*^9, 3.8219103706770787`*^9}, {
+  3.8219104309461184`*^9, 3.8219105253552804`*^9}, {3.8219105803610687`*^9, 
+  3.8219107168092256`*^9}, {3.821910753684938*^9, 3.821910965695504*^9}, {
+  3.821911046219097*^9, 3.82191104688778*^9}, {3.821911095593616*^9, 
+  3.821911096381731*^9}, {3.821911432695671*^9, 
+  3.8219114646782885`*^9}},ExpressionUUID->"4501dfd1-c6d3-4970-adf4-\
+ee184ac64733"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DynamicModule", "[", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"\[Omega]", " ", "=", " ", "1"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Vm", " ", "=", " ", "3"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"R", " ", "=", " ", "10"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"L", " ", "=", " ", "1"}]}], "\[IndentingNewLine]", "}"}], ",", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"Row", "[", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Dynamic", "@", 
+        RowBox[{"Plot", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Vm", " ", 
+             RowBox[{"Cos", "[", 
+              RowBox[{"\[Omega]", " ", "t"}], "]"}]}], ",", 
+            RowBox[{
+             FractionBox["Vm", 
+              SqrtBox[
+               RowBox[{
+                SuperscriptBox["R", "2"], "+", 
+                RowBox[{
+                 SuperscriptBox["\[Omega]", "2"], 
+                 SuperscriptBox["L", "2"]}]}]]], 
+             RowBox[{"Cos", "[", 
+              RowBox[{
+               RowBox[{"\[Omega]", " ", "t"}], "-", 
+               RowBox[{"ArcTan", "[", 
+                FractionBox[
+                 RowBox[{"\[Omega]", " ", "L"}], "R"], "]"}]}], "]"}]}]}], 
+           "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", 
+            RowBox[{
+             RowBox[{"-", "4"}], "\[Pi]"}], ",", 
+            RowBox[{"4", "\[Pi]"}]}], "}"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", " ", "5"}], ",", 
+          RowBox[{"ImageSize", "\[Rule]", "Medium"}]}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Column", "[", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Slider", "[", 
+              RowBox[{
+               RowBox[{"Dynamic", "@", "\[Omega]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "4"}], "}"}]}], "]"}], ",", ",", ",", 
+             RowBox[{"Dynamic", "@", 
+              RowBox[{"StringForm", "[", 
+               RowBox[{"\"\<\[Omega] = ``\>\"", ",", 
+                RowBox[{"NumberForm", "[", 
+                 RowBox[{"\[Omega]", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"2", ",", "1"}], "}"}]}], "]"}]}], "]"}]}]}], 
+            "}"}], "]"}], ",", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Slider", "[", 
+              RowBox[{
+               RowBox[{"Dynamic", "@", "Vm"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "5"}], "}"}]}], "]"}], ",", ",", ",", 
+             RowBox[{"Dynamic", "@", 
+              RowBox[{"StringForm", "[", 
+               RowBox[{"\"\<\!\(\*SubscriptBox[\(V\), \(m\)]\) = ``\>\"", ",", 
+                RowBox[{"NumberForm", "[", 
+                 RowBox[{"Vm", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"2", ",", "1"}], "}"}]}], "]"}]}], "]"}]}]}], 
+            "}"}], "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Slider", "[", 
+              RowBox[{
+               RowBox[{"Dynamic", "@", "R"}], ",", 
+               RowBox[{"{", 
+                RowBox[{".1", ",", "10"}], "}"}]}], "]"}], ",", ",", ",", 
+             RowBox[{"Dynamic", "@", 
+              RowBox[{"StringForm", "[", 
+               RowBox[{"\"\<R = ``\>\"", ",", 
+                RowBox[{"NumberForm", "[", 
+                 RowBox[{"R", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"2", ",", "1"}], "}"}]}], "]"}]}], "]"}]}]}], 
+            "}"}], "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Slider", "[", 
+              RowBox[{
+               RowBox[{"Dynamic", "@", "L"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "5"}], "}"}]}], "]"}], ",", ",", ",", 
+             RowBox[{"Dynamic", "@", 
+              RowBox[{"StringForm", "[", 
+               RowBox[{"\"\<L = ``\>\"", ",", 
+                RowBox[{"NumberForm", "[", 
+                 RowBox[{"L", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"2", ",", "1"}], "}"}]}], "]"}]}], "]"}]}]}], 
+            "}"}], "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], 
+      "\[IndentingNewLine]", "}"}], "]"}], "\[IndentingNewLine]", "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.821911203968984*^9, 3.8219114247057033`*^9}, {
+   3.8219114823869047`*^9, 3.821911560574972*^9}, {3.8219116017731924`*^9, 
+   3.8219116491638803`*^9}, {3.8219117324073143`*^9, 3.821911770788562*^9}, {
+   3.8219118200379105`*^9, 3.821911828698745*^9}, {3.821911901576921*^9, 
+   3.8219119783769913`*^9}, {3.8219120104269314`*^9, 
+   3.8219121052881784`*^9}, {3.8219121490627537`*^9, 
+   3.8219124267674856`*^9}, {3.8219125216679697`*^9, 3.8219125529242873`*^9}, 
+   3.821912597650587*^9, {3.82191769074259*^9, 3.821917691658185*^9}, 
+   3.821917880197895*^9, {3.8219179593347235`*^9, 3.8219179598792667`*^9}},
+ CellLabel->"In[88]:=",ExpressionUUID->"158c7a68-7a83-42b5-9497-eb83e5cda047"],
+
+Cell[BoxData[
+ DynamicModuleBox[{$CellContext`\[Omega]$$ = 1.68, $CellContext`Vm$$ = 
+  4.11, $CellContext`R$$ = 5.05, $CellContext`L$$ = 2.5500000000000003`}, 
+  RowBox[{"{", 
+   TemplateBox[{DynamicBox[
+      ToBoxes[
+       Plot[{$CellContext`Vm$$ 
+         Cos[$CellContext`\[Omega]$$ $CellContext`t], ($CellContext`Vm$$/
+          Sqrt[$CellContext`R$$^2 + $CellContext`\[Omega]$$^2 \
+$CellContext`L$$^2]) 
+         Cos[$CellContext`\[Omega]$$ $CellContext`t - 
+           ArcTan[$CellContext`\[Omega]$$ \
+($CellContext`L$$/$CellContext`R$$)]]}, {$CellContext`t, (-4) Pi, 4 Pi}, 
+        PlotRange -> 5, ImageSize -> Medium], StandardForm]],TagBox[
+      GridBox[{{
+         TemplateBox[{
+           SliderBox[
+            Dynamic[$CellContext`\[Omega]$$], {0, 4}], "", "", 
+           DynamicBox[
+            ToBoxes[
+             StringForm["\[Omega] = ``", 
+              NumberForm[$CellContext`\[Omega]$$, {2, 1}]], StandardForm]]}, 
+          "RowDefault"]}, {
+         TemplateBox[{
+           SliderBox[
+            Dynamic[$CellContext`Vm$$], {0, 5}], "", "", 
+           DynamicBox[
+            ToBoxes[
+             StringForm["\!\(\*SubscriptBox[\(V\), \(m\)]\) = ``", 
+              NumberForm[$CellContext`Vm$$, {2, 1}]], StandardForm]]}, 
+          "RowDefault"]}, {
+         TemplateBox[{
+           SliderBox[
+            Dynamic[$CellContext`R$$], {0.1, 10}], "", "", 
+           DynamicBox[
+            ToBoxes[
+             StringForm["R = ``", 
+              NumberForm[$CellContext`R$$, {2, 1}]], StandardForm]]}, 
+          "RowDefault"]}, {
+         TemplateBox[{
+           SliderBox[
+            Dynamic[$CellContext`L$$], {0, 5}], "", "", 
+           DynamicBox[
+            ToBoxes[
+             StringForm["L = ``", 
+              NumberForm[$CellContext`L$$, {2, 1}]], StandardForm]]}, 
+          "RowDefault"]}}, GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+       DefaultBaseStyle -> "Column", 
+       GridBoxItemSize -> {
+        "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], "Column"]},
+    "RowDefault"], "}"}],
+  DynamicModuleValues:>{}]], "Output",
+ CellChangeTimes->{{3.821911316889722*^9, 3.82191136280796*^9}, {
+   3.8219115559174204`*^9, 3.8219115619097033`*^9}, {3.82191160554644*^9, 
+   3.821911650224823*^9}, {3.821911735492487*^9, 3.821911771441103*^9}, {
+   3.8219118205925684`*^9, 3.8219118292332153`*^9}, {3.8219120970527887`*^9, 
+   3.821912105629671*^9}, {3.821912150426609*^9, 3.8219122293432045`*^9}, {
+   3.8219122607848597`*^9, 3.8219123100921707`*^9}, {3.821912380860252*^9, 
+   3.8219124279842577`*^9}, 3.8219125231224117`*^9, 3.8219125550417767`*^9, 
+   3.8219125980145774`*^9, 3.82191788797307*^9, 3.821917960467727*^9},
+ CellLabel->"Out[88]=",ExpressionUUID->"2a91498a-d280-4931-b143-d0cbea1b3341"]
+}, {2}]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Complex Forcing Function ", "Section",
+ CellChangeTimes->{{3.8226580794217725`*^9, 
+  3.822658090809972*^9}},ExpressionUUID->"142d2670-8e0b-440e-8a7b-\
+4e27632d80ff"],
+
+Cell[TextData[{
+ StyleBox["For when the transient response is of no interest.\nBy linearity, \
+the real part of the complex forcing function produces a real response and \
+the imaginary part an imaginary response.",
+  FontColor->GrayLevel[1]],
+ "  "
+}], "Subsubsection",
+ CellChangeTimes->{{3.8226581267499237`*^9, 3.8226581396522937`*^9}, {
+  3.822660095492751*^9, 
+  3.822660196394803*^9}},ExpressionUUID->"88c8ebaa-c1d6-4fd2-9534-\
+555240c308fc"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["RL Circuit", "Subchapter",
+ CellChangeTimes->{{3.822660854573806*^9, 
+  3.8226608576699896`*^9}},ExpressionUUID->"e3eb02ee-16d6-420f-81ad-\
+da7afd8df78e"],
+
+Cell[TextData[{
+ "Generalizing to a complex exponential source:\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["V", "s"], " ", "=", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"L", 
+        StyleBox[
+         FractionBox[
+          RowBox[{"d", " ", "i"}], 
+          RowBox[{"d", " ", "t"}]],
+         FontSize->24]}], "+", " ", 
+       RowBox[{"R", " ", "i"}]}], " ", "\[Rule]", 
+      RowBox[{
+       SubscriptBox["V", "m"], 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"\[ImaginaryI]", " ", "\[Omega]", " ", "t"}]]}]}], " ", "=", 
+     " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"L", 
+         StyleBox[
+          FractionBox["d", 
+           RowBox[{"d", " ", "t"}]],
+          FontSize->24], 
+         RowBox[{
+          StyleBox["(",
+           FontSize->18], 
+          RowBox[{
+           SubscriptBox["I", "m"], 
+           SuperscriptBox[
+            StyleBox["\[ExponentialE]",
+             FontSize->18], 
+            RowBox[{"\[ImaginaryI]", " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"\[Omega]", " ", "t"}], " ", "+", " ", "\[Phi]"}], " ",
+               ")"}]}]]}], 
+          StyleBox[")",
+           FontSize->18]}]}], "+", " ", 
+        RowBox[{"R", " ", 
+         SubscriptBox["I", "m"], 
+         SuperscriptBox[
+          StyleBox["\[ExponentialE]",
+           FontSize->18], 
+          RowBox[{"\[ImaginaryI]", " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"\[Omega]", " ", "t"}], " ", "+", " ", "\[Phi]"}], " ", 
+            ")"}]}]]}]}], "\[Rule]", 
+       SubscriptBox["V", "m"]}], "=", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"\[ImaginaryI]", " ", "\[Omega]", " ", "L"}], "+", "R"}], 
+        " ", ")"}], 
+       SubscriptBox["I", "m"], " ", 
+       SuperscriptBox[
+        StyleBox["\[ExponentialE]",
+         FontSize->18], 
+        RowBox[{"\[ImaginaryI]", " ", "\[Phi]", " "}]], " "}]}]}]}], 
+   TraditionalForm]],
+  FontColor->GrayLevel[1],ExpressionUUID->
+  "f29e6611-57b9-466f-aa75-bccf42002575"],
+ "\nChanging to polar representation and rearranging\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["V", "m"], "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         SqrtBox[
+          RowBox[{
+           SuperscriptBox["R", "2"], "+", 
+           RowBox[{
+            SuperscriptBox["\[Omega]", "2"], 
+            SuperscriptBox["L", "2"]}]}]], 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"\[ImaginaryI]", " ", 
+           RowBox[{"arctan", "(", 
+            FractionBox[
+             RowBox[{"\[Omega]", " ", "L"}], "R"], ")"}]}]]}], ")"}], 
+       SubscriptBox["I", "m"], " ", 
+       SuperscriptBox[
+        StyleBox["\[ExponentialE]",
+         FontSize->18], 
+        RowBox[{"\[ImaginaryI]", " ", "\[Phi]", " "}]]}], " ", "\[Rule]", 
+      RowBox[{
+       StyleBox[
+        SubscriptBox["I", "m"],
+        FontColor->RGBColor[1, 0, 1]], " ", 
+       SuperscriptBox[
+        StyleBox["\[ExponentialE]",
+         FontSize->18], 
+        RowBox[{"\[ImaginaryI]", " ", 
+         StyleBox["\[Phi]",
+          FontColor->RGBColor[1, 0.5, 0.5]], 
+         StyleBox[" ",
+          FontColor->RGBColor[1, 0.5, 0.5]]}]]}]}], "=", 
+     RowBox[{
+      StyleBox[
+       FractionBox[
+        SubscriptBox["V", "m"], 
+        SqrtBox[
+         RowBox[{
+          SuperscriptBox["R", "2"], "+", 
+          RowBox[{
+           SuperscriptBox["\[Omega]", "2"], 
+           SuperscriptBox["L", "2"]}]}]]],
+       FontSize->24,
+       FontColor->RGBColor[1, 0, 1]], 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"\[ImaginaryI]", " ", 
+        StyleBox["\[Dash]",
+         FontColor->RGBColor[1, 0.5, 0.5]], 
+        StyleBox[
+         RowBox[{"arctan", 
+          RowBox[{"(", 
+           FractionBox[
+            RowBox[{"\[Omega]", " ", "L"}], "R"], ")"}]}],
+         FontColor->RGBColor[1, 0.5, 0.5]]}]]}]}]}], TraditionalForm]],
+  FontColor->GrayLevel[1],ExpressionUUID->
+  "133b89af-6a29-42ff-8ab6-dd3967a7d1c4"],
+ "\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"Re", "(", 
+     RowBox[{
+      SubscriptBox["I", "m"], " ", 
+      SuperscriptBox[
+       StyleBox["\[ExponentialE]",
+        FontSize->18], 
+       RowBox[{"\[ImaginaryI]", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"\[Omega]", " ", "t"}], " ", "+", " ", "\[Phi]"}], ")"}], 
+        " "}]]}], ")"}], "=", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["I", "m"], 
+      RowBox[{"cos", "(", 
+       RowBox[{
+        RowBox[{"\[Omega]", " ", "t"}], " ", "+", "\[Phi]"}], ")"}]}], "=", 
+     RowBox[{
+      StyleBox[
+       FractionBox[
+        SubscriptBox["V", "m"], 
+        SqrtBox[
+         RowBox[{
+          SuperscriptBox["R", "2"], "+", " ", 
+          RowBox[{
+           SuperscriptBox["\[Omega]", "2"], 
+           SuperscriptBox["L", "2"]}]}]]],
+       FontSize->24], 
+      RowBox[{"cos", "(", 
+       RowBox[{
+        RowBox[{"\[Omega]", " ", "t"}], " ", "-", 
+        RowBox[{"arctan", "(", 
+         StyleBox[
+          FractionBox["\[Omega]L", "R"],
+          FontSize->24], ")"}]}], ")"}]}]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm",
+  FontColor->GrayLevel[1],ExpressionUUID->
+  "8912ea62-58ff-4583-a873-1e4144c44aa3"],
+ " "
+}], "Subsubsection",
+ CellChangeTimes->{{3.82266096217198*^9, 3.82266115193777*^9}, {
+  3.822661556940071*^9, 3.822661600735042*^9}, {3.822661644215144*^9, 
+  3.82266168938232*^9}, {3.8226617308722754`*^9, 3.822661749303609*^9}, {
+  3.8226617869833093`*^9, 3.8226617956604195`*^9}, {3.8226618270737896`*^9, 
+  3.8226619487568808`*^9}, {3.8226624156589384`*^9, 3.822662492884713*^9}, {
+  3.822662523027966*^9, 3.8226626673379326`*^9}, {3.82266271123468*^9, 
+  3.8226627681525755`*^9}, {3.822662853418372*^9, 3.822662856156386*^9}, {
+  3.8226631329667206`*^9, 3.822663150338252*^9}, {3.8226632978247643`*^9, 
+  3.822663311917199*^9}, {3.822663342002983*^9, 3.822663344435046*^9}, {
+  3.8226633971615014`*^9, 3.8226634565112267`*^9}, {3.822665325515939*^9, 
+  3.8226653315967197`*^9}, {3.8226654227131205`*^9, 
+  3.8226655111995907`*^9}},ExpressionUUID->"b4e3cac2-165d-48cd-931e-\
+e70bb03c9f55"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1366, 695},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"ReverseColor.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 163, 3, 96, "Title",ExpressionUUID->"5168e58f-2026-40a9-862b-ad6e986db050"],
+Cell[CellGroupData[{
+Cell[768, 29, 168, 3, 67, "Section",ExpressionUUID->"bd12b6eb-312e-4753-a4a9-3bc9448368b2"],
+Cell[939, 34, 1553, 43, 44, "Subsubsection",ExpressionUUID->"f45a6eac-1e13-4cc6-ba23-60bd77a2e65b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2529, 82, 168, 3, 67, "Section",ExpressionUUID->"fb3afe90-e127-4f2b-a136-ac2075215d5c"],
+Cell[2700, 87, 278, 6, 44, "Subsubsection",ExpressionUUID->"5eb0de02-0a4f-41b0-ac21-38d395e7f7eb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3015, 98, 283, 4, 67, "Section",ExpressionUUID->"26c37721-86de-4e12-a64a-ccbb8c2599c5"],
+Cell[CellGroupData[{
+Cell[3323, 106, 4013, 123, 266, "Subsubsection",ExpressionUUID->"4501dfd1-c6d3-4970-adf4-ee184ac64733"],
+Cell[CellGroupData[{
+Cell[7361, 233, 5249, 122, 389, "Input",ExpressionUUID->"158c7a68-7a83-42b5-9497-eb83e5cda047"],
+Cell[12613, 357, 2772, 60, 242, "Output",ExpressionUUID->"2a91498a-d280-4931-b143-d0cbea1b3341"]
+}, {2}]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15443, 424, 172, 3, 67, "Section",ExpressionUUID->"142d2670-8e0b-440e-8a7b-4e27632d80ff"],
+Cell[15618, 429, 449, 10, 69, "Subsubsection",ExpressionUUID->"88c8ebaa-c1d6-4fd2-9534-555240c308fc"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16104, 444, 160, 3, 64, "Subchapter",ExpressionUUID->"e3eb02ee-16d6-420f-81ad-da7afd8df78e"],
+Cell[16267, 449, 6210, 186, 207, "Subsubsection",ExpressionUUID->"b4e3cac2-165d-48cd-931e-e70bb03c9f55"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
